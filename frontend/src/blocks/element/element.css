@@ -1,0 +1,12 @@
+.element {
+  position: relative;
+  display: grid;
+  grid-template-columns: 282px;
+  grid-template-rows: 282px 79px;
+  align-items: center;
+  justify-items: stretch;
+  margin: 0;
+  padding: 0;
+  background: #FFFFFF;
+  border-radius: 10px;
+}

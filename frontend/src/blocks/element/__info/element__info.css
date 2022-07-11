@@ -1,0 +1,12 @@
+.element__info {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "title like"
+    "title like-number";
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px;
+  padding: 0;
+}

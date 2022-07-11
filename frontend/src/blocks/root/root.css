@@ -1,0 +1,6 @@
+.root {
+  position: relative;
+  display: grid;
+  margin: 0;
+  background: #000000;
+}

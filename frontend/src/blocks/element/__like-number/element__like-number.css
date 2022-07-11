@@ -1,0 +1,15 @@
+.element__like-number {
+  grid-area: like-number;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 22px;
+  height: 19px;
+  font-family: Inter,'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  text-align: center;
+}

@@ -1,0 +1,8 @@
+.login {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  justify-items: center;
+}

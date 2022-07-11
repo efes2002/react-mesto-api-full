@@ -1,0 +1,15 @@
+.profile__edit-avatar-button {
+  display: none;
+  position: absolute;
+  padding: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  box-sizing: border-box;
+  background: url(../../../images/icon-pen-avatar.png) center center no-repeat;
+}

@@ -1,0 +1,14 @@
+.element__like {
+  grid-area: like;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 22px;
+  height: 19px;
+  background: url(../../../images/icon-like-disabled.svg) no-repeat;
+}
+
+.element__like:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.popup__button-x {
+  position: absolute;
+  border: 0;
+  width: 32px;
+  height: 32px;
+  right: -40px;
+  top: -40px;
+  background: url(../../../images/icon-close.png) center center no-repeat;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__button-x {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -36px;
+  }
+}

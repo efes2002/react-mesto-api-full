@@ -1,0 +1,16 @@
+.header-menu_login {
+  font-family: Inter,'Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .header-menu_login {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

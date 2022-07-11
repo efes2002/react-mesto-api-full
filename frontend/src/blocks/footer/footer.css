@@ -1,0 +1,20 @@
+.footer {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-rows: 145px;
+  align-items: end;
+  justify-items: start;
+}
+
+@media screen and (max-width: 900px) {
+  .footer {
+    grid-template-rows: 125px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .footer {
+    grid-template-rows: 98px;
+  }
+}

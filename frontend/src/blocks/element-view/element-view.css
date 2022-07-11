@@ -1,0 +1,6 @@
+.element-view {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  grid-row-gap: 10px;
+}

@@ -1,0 +1,14 @@
+.profile__avatar-box {
+  display: grid;
+  position: relative;
+  background: rgba(0, 0, 0, 0);
+}
+
+.profile__avatar-box:hover button {
+  display: block;
+}
+
+.profile__avatar-box:hover img {
+  opacity: 0.5;
+}
+

@@ -1,0 +1,15 @@
+.profile__title-box {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  grid-column-gap: 18px;
+  width: fit-content;
+  align-items: baseline;
+}
+
+@media screen and (max-width: 600px) {
+  .profile__edit-button {
+    width: 10px;
+  }
+}
