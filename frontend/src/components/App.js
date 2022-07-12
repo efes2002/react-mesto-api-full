@@ -3,7 +3,7 @@ import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from "./ImagePopup";
 import {useState, useEffect} from "react";
-import api from "../utils/Api";
+import Api from "../utils/Api";
 import React from 'react';
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import {LoggedInUserContext} from "../contexts/LoggedInUserContext";
@@ -14,6 +14,7 @@ import DeleteCardPopup from "./DeleteCardPopup";
 import InfoTooltip from "./InfoTooltip";
 import AuthApi from "../utils/AuthApi";
 import {useNavigate} from "react-router-dom";
+import {optionsApi} from "../utils/config";
 
 function App() {
 
@@ -32,6 +33,14 @@ function App() {
   const [valueInfoTooltip, setValueInfoTooltip] = useState({isSuccess: '', textMessage: '', redirectLink: ''});
   const [isDisabledButtonPopup, setIsDisabledButtonPopup] = useState(false);
   const [loggedIn, setLoggedIn] = useState(true);
+  const [sessionToken, setSessionToken] = useState(localStorage.getItem('token'));
+
+  const api = new Api({
+    ...optionsApi,
+    headers: {
+      authorization: `Bearer ${sessionToken}`
+    }
+  });
 
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
@@ -140,10 +149,8 @@ function App() {
   }
 
   const tokenCheck = () => {
-
-    console.log('tokenCheck',document.cookie)
-    const token = document.cookie;
-
+    const token = localStorage.getItem('token');
+    setSessionToken(token);
     if (token === 'undefined') {
       onSignOut();
     } else {
@@ -170,7 +177,8 @@ function App() {
     AuthApi.authUser({email: email, password: password})
       .then((data) => {
         if (data) {
-          localStorage.setItem('token', data.token)
+          const token = data.token;
+          localStorage.setItem('token', token);
           tokenCheck();
         } else {
           setValueInfoTooltip({
@@ -188,6 +196,7 @@ function App() {
 
   const onSignOut = () => {
     localStorage.removeItem('token');
+    setSessionToken('');
     setUserEmail('');
     setLoggedIn(false);
   }
@@ -235,7 +244,7 @@ function App() {
         });
     }
 
-  }, [loggedIn])
+  }, [loggedIn, sessionToken])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

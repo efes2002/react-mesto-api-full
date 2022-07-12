@@ -116,20 +116,16 @@ module.exports.login = (req, res, next) => {
       return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (!matched) {
-            console.log('backend-Login-запрос', 1)
             next(new UnauthorizedError('Неправильные почта или пароль'));
           } else {
-            console.log('backend-Login-запрос', 2)
+            console.log('user._id=', user._id)
+
             const token = jwt.sign(
               { _id: user._id },
               'some-secret-key',
               { expiresIn: '7d' },
             );
-            console.log('beckend-Login-запрос', 3, token)
-            res.status(200)
-              .cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true })
-              .send({ message: 'Всё верно!' })
-              .end();
+            res.status(200).send({ token })
           }
         });
     })

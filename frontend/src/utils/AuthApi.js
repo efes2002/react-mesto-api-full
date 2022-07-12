@@ -33,7 +33,6 @@ class AuthApi {
     return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      credentials: 'include',
       body: JSON.stringify({
         password: String(password),
         email: String(email)
@@ -42,7 +41,6 @@ class AuthApi {
       .then((res) => {
         try {
           if ((res.status === 200) || (res.status === 201)) {
-            console.log('fetch/signin', res)
             return res.json();
           }
         } catch (e) {
@@ -58,7 +56,6 @@ class AuthApi {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: {'Content-Type': 'application/json', "Authorization" : `Bearer ${token}`},
-      credentials: 'include',
     })
       .then((res) => {
         try {
@@ -69,7 +66,7 @@ class AuthApi {
           return (e)
         }
       })
-      .then(({data}) => {
+      .then((data) => {
         if (data.email) {
           return data;
         }
