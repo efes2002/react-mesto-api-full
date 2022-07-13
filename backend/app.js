@@ -13,8 +13,12 @@ const { PORT = 4000 } = process.env;
 const allowedCors = [
   'http://localhost:3000',
   'localhost:3000',
+  'http://localhost:3000/',
+  'localhost:3000/',
   'http://192.168.50.208:3000',
   '192.168.50.208:3000',
+  'http://192.168.0.11:3000',
+  '192.168.0.11:3000',
 ];
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
@@ -26,8 +30,6 @@ const app = express();
 app.use(cookieParser());
 
 app.use(bodyParser.json());
-
-app.use(requestLogger);
 
 app.use((req, res, next) => {
   const { origin } = req.headers;
@@ -46,6 +48,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use(requestLogger);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({

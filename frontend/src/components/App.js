@@ -32,12 +32,13 @@ function App() {
   const [cardId, setCardId] = useState('');
   const [valueInfoTooltip, setValueInfoTooltip] = useState({isSuccess: '', textMessage: '', redirectLink: ''});
   const [isDisabledButtonPopup, setIsDisabledButtonPopup] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [sessionToken, setSessionToken] = useState(localStorage.getItem('token'));
 
   const api = new Api({
     ...optionsApi,
     headers: {
+      'Content-Type': 'application/json',
       authorization: `Bearer ${sessionToken}`
     }
   });
@@ -226,8 +227,9 @@ function App() {
   }
 
   useEffect(() => {
-    tokenCheck();
+    console.log(1)
     if (loggedIn) {
+      console.log(2)
       api.getProfile()
         .then((res) => {
           setCurrentUser(res);
@@ -243,8 +245,12 @@ function App() {
           console.log(err);
         });
     }
+    else {
+      console.log(3)
+      tokenCheck();
+    }
 
-  }, [loggedIn, sessionToken])
+  }, [loggedIn])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

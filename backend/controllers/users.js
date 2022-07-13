@@ -9,6 +9,7 @@ const ConflictError = require('../errors/conflictError');
 function getUserById(req, res, next, id) {
   return User.findById(id)
     .then((user) => {
+      console.log('getUserById user=', user);
       if (!user) {
         throw new NotFoundError('Пользователь не найден');
       } else {
@@ -29,7 +30,9 @@ module.exports.getUser = (req, res, next) => {
 };
 
 module.exports.getUserMe = (req, res, next) => {
+
   const id = req.user._id;
+  console.log('getUserMe id=', id);
   return getUserById(req, res, next, id);
 };
 
@@ -118,8 +121,6 @@ module.exports.login = (req, res, next) => {
           if (!matched) {
             next(new UnauthorizedError('Неправильные почта или пароль'));
           } else {
-            console.log('user._id=', user._id)
-
             const token = jwt.sign(
               { _id: user._id },
               'some-secret-key',

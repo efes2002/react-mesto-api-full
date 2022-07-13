@@ -5,7 +5,9 @@ class Api {
   }
 
   getInitialCards() {
+
     return fetch(`${this._baseUrl}/cards`, {
+      method: 'GET',
       headers: this._headers
     })
       .then(this._checkResponse);
@@ -13,6 +15,7 @@ class Api {
 
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
       headers: this._headers
     })
       .then(this._checkResponse);
@@ -21,7 +24,7 @@ class Api {
   editProfile({name, about}) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: {...this._headers, 'Content-Type': 'application/json'},
+      headers: this._headers,
       body: JSON.stringify({
         name: String(name),
         about: String(about)
@@ -33,7 +36,7 @@ class Api {
   addNewCard({name, link}) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: {...this._headers, 'Content-Type': 'application/json'},
+      headers: this._headers,
       body: JSON.stringify({
         name: String(name),
         link: String(link)
@@ -73,7 +76,7 @@ class Api {
   editAvatar({avatar}) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {...this._headers, 'Content-Type': 'application/json'},
+      headers: this._headers,
       body: JSON.stringify({
         avatar: String(avatar)
       })

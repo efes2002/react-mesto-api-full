@@ -53,9 +53,13 @@ class AuthApi {
   }
 
   validUser(token) {
+    console.log('validUser=',token)
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
-      headers: {'Content-Type': 'application/json', "Authorization" : `Bearer ${token}`},
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`
+      }
     })
       .then((res) => {
         try {
@@ -73,11 +77,6 @@ class AuthApi {
         else {return;}
       })
       .catch((err) => console.log(err));
-  }
-
-  _checkResponse(res) {
-    if (res.ok) { return res.json(); }
-    return Promise.reject(`Ошибка: ${res.status}`);
   }
 }
 
