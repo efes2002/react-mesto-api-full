@@ -227,9 +227,7 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(1)
     if (loggedIn) {
-      console.log(2)
       api.getProfile()
         .then((res) => {
           setCurrentUser(res);
@@ -246,7 +244,6 @@ function App() {
         });
     }
     else {
-      console.log(3)
       tokenCheck();
     }
 

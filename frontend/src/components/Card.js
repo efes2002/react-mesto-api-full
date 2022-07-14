@@ -4,9 +4,6 @@ import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
 function Card({card, onCardClick, onCardLike, onCardDelete}) {
   const currentUser = useContext(CurrentUserContext);
-  console.log('card=',card);
-
-  console.log('Card isOwn card.owner._id === currentUser._id  ', 'card.owner._id=',card.owner._id ,'  currentUser._id=',currentUser._id)
   const isOwn = card.owner._id === currentUser._id;
   const cardDeleteButtonClassName = (
     `element__delete-button ${isOwn ? 'element__delete-button_visible' : 'element__delete-button_hidden'}`

@@ -15,27 +15,26 @@ module.exports.createCard = (req, res, next) => {
   const owner = req.user._id;
   const { name, link } = req.body;
   Card.create({ name, link, owner })
-    .then((card) =>
-      Card.findById(card._id)
-        .populate('owner')
-        .then((item) => {
-          if (!item) {
-            next(new NotFoundError('Карточка не найдена'));
-          } else {
-            res.status(201).send(item);
-          }
-        })
-        .catch((err) => {
-          if (err.name === 'CastError') {
-            return next(new BadRequestError('Переданы некорректные данные'));
-          }
-          return next(err);
-        })
-    )
+    .then((card) => Card.findById(card._id)
+      .populate('owner')
+      .then((item) => {
+        if (!item) {
+          next(new NotFoundError('Карточка не найдена'));
+        } else {
+          res.status(201).send(item);
+        }
+      })
+      .catch((err) => {
+        if (err.name === 'CastError') {
+          return next(new BadRequestError('Переданы некорректные данные'));
+        }
+        return next(err);
+      }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new BadRequestError(`Переданы некорректные данные - ${err.message}`));
-      } return next(err);
+      }
+      return next(err);
     });
 };
 
@@ -65,7 +64,8 @@ module.exports.deleteCard = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'CastError') {
         return next(new BadRequestError('Переданы некорректные данные'));
-      } return next(err);
+      }
+      return next(err);
     });
 };
 
@@ -101,8 +101,6 @@ module.exports.dislikeCard = (req, res, next) => {
     .populate('owner')
     .populate('likes')
     .then((card) => {
-      console.log('dislikeCard card=',card)
-
       if (!card) {
         next(new NotFoundError('Карточка не найдена'));
       } else {

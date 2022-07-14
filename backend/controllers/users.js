@@ -6,10 +6,11 @@ const UnauthorizedError = require('../errors/unauthorizedError');
 const NotFoundError = require('../errors/notFoundError');
 const ConflictError = require('../errors/conflictError');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 function getUserById(req, res, next, id) {
   return User.findById(id)
     .then((user) => {
-      console.log('getUserById user=', user);
       if (!user) {
         throw new NotFoundError('Пользователь не найден');
       } else {
@@ -30,9 +31,7 @@ module.exports.getUser = (req, res, next) => {
 };
 
 module.exports.getUserMe = (req, res, next) => {
-
   const id = req.user._id;
-  console.log('getUserMe id=', id);
   return getUserById(req, res, next, id);
 };
 
@@ -121,12 +120,13 @@ module.exports.login = (req, res, next) => {
           if (!matched) {
             next(new UnauthorizedError('Неправильные почта или пароль'));
           } else {
+            const secretKey = NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key';
             const token = jwt.sign(
               { _id: user._id },
-              'some-secret-key',
+              secretKey,
               { expiresIn: '7d' },
             );
-            res.status(200).send({ token })
+            res.status(200).send({ token });
           }
         });
     })

@@ -53,7 +53,6 @@ class AuthApi {
   }
 
   validUser(token) {
-    console.log('validUser=',token)
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: {
