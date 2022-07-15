@@ -20,6 +20,7 @@ const allowedCors = [
   '192.168.50.208:3000',
   'http://192.168.0.11:3000',
   '192.168.0.11:3000',
+  'https://efes2002.students.nomoredomains.xyz',
   'efes2002.students.nomoredomains.xyz',
   'efes2002.students.nomoredomains.xyz:3000',
   '51.250.31.22',

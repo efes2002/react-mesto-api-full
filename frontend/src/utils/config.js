@@ -1,8 +1,8 @@
 export const optionsApi = {
-  baseUrl: 'http://localhost:4000',
+  baseUrl: 'https://api.efes2002.students.nomoredomains.xyz',
 }
 
 export const optionsAuthApi = {
-  baseUrl: 'http://localhost:4000',
+  baseUrl: 'https://api.efes2002.students.nomoredomains.xyz',
 }
 
