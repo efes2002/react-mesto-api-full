@@ -20,6 +20,10 @@ const allowedCors = [
   '192.168.50.208:3000',
   'http://192.168.0.11:3000',
   '192.168.0.11:3000',
+  'efes2002.students.nomoredomains.xyz',
+  'efes2002.students.nomoredomains.xyz:3000',
+  '51.250.31.22',
+  '51.250.31.22:3000',
 ];
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
