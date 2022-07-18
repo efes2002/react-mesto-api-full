@@ -73,7 +73,7 @@ app.post('/signin', celebrate({
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(8),
+    password: Joi.string().required(),
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
     avatar: Joi.string().custom(customUrlValidationJoi),
@@ -84,11 +84,11 @@ app.use(auth);
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
 
-app.use(errorLogger);
-
 app.use((req, res, next) => {
   next(new NotFoundError('Страница не найдена - 404'));
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 
