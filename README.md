@@ -6,4 +6,7 @@
 **Технологии:**
 Сайт выполнен на HTML и CSS, вся логика написана на javaScript.
 
-https://efes2002.students.nomoredomains.xyz
+FrontEnd - https://efes2002.students.nomoredomains.xyz
+BackEnd - https://api.efes2002.students.nomoredomains.xyz
+
+Публичный - 51.250.31.22
